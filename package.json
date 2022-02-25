@@ -1,0 +1,24 @@
+{
+  "name": "breederdao",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "mongodb:runner": "node mongodb/runner.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carldmalingalan/axie-endpoint.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carldmalingalan/axie-endpoint/issues"
+  },
+  "homepage": "https://github.com/carldmalingalan/axie-endpoint#readme",
+  "dependencies": {
+    "axios": "^0.26.0",
+    "mongodb": "^4.4.0"
+  }
+}
