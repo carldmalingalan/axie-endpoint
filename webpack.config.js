@@ -1,24 +1,30 @@
 const path = require("path");
-const nodeExternals = require("webpack-node-externals");
 const dotenv = require("dotenv");
+const nodeExternals = require("webpack-node-externals");
 const { DefinePlugin } = require("webpack");
 
 module.exports = {
   mode: "development",
   context: path.resolve(__dirname, "src"),
   devtool: "source-map",
-  entry: "./server.js",
   externals: [nodeExternals()],
-  externalsPresets: {
-    node: true,
-  },
+  externalsPresets: { node: true },
+  entry: ["regenerator-runtime/runtime.js", "./server.js"],
   output: {
     path: path.resolve(__dirname, "dist"),
   },
-  target: "node",
   module: {
     rules: [
-      { test: /.(js)$/, exclude: /node_modules/, loader: "babel-loader" },
+      {
+        test: /.(js)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+          },
+        },
+      },
     ],
   },
   plugins: [
