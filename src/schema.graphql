@@ -16,6 +16,13 @@ type Axie {
   pets(input: AxieInput): Pets
 }
 
+type AxieMutation {
+  createPet(input: CreatePetInput!): Pet
+  updatePet(input: UpdatePetInput!): Pet
+  deletePet(id: String!): Pet
+}
+
 schema {
   query: Axie
+  mutation: AxieMutation
 }

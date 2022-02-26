@@ -1,4 +1,5 @@
 import Hashids from "hashids";
+import { v1 as uuidv1 } from "uuid";
 import { HASH_SALT, SORT_VALUES } from "@common/constants";
 
 const hashids = new Hashids(HASH_SALT);
@@ -22,3 +23,10 @@ export const parseParams = (params = {}) => {
 
   return sanitizedParams;
 };
+
+export const getUuid = () =>
+  uuidv1()
+    .split("-")
+    .join("")
+    .replace(/[a-zA-Z]/g, "")
+    .substring(0, 10);

@@ -11,3 +11,30 @@ type Pets {
   result_count: Int!
   pet: [Pet!]
 }
+
+input CreatePetInput {
+  name: String!
+  class: PetAllowedClass!
+  stage: Int!
+  priceUSD: Float!
+}
+
+input UpdatePetInput {
+  id: String!
+  name: String
+  class: PetAllowedClass
+  stage: Int
+  priceUSD: Float
+}
+
+enum PetAllowedClass {
+  Aquatic
+  Bird
+  Dawn
+  Dusk
+  Plant
+  Reptile
+  Beast
+  Bug
+  Mech
+}
