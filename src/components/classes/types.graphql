@@ -1,0 +1,4 @@
+type Class {
+  name: String!
+  total_pet_count: Int!
+}

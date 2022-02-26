@@ -1,0 +1,21 @@
+enum SortValues {
+  CLASS
+  PRICE_ASC
+  PRICE_DESC
+  NAME
+}
+
+input AxieInput {
+  offset: Int = 0
+  limit: Int = 50
+  sort: SortValues = NAME
+}
+
+type Axie {
+  classes(input: AxieInput): [Class!]
+  pets(input: AxieInput): Pets
+}
+
+schema {
+  query: Axie
+}

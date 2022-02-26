@@ -1,0 +1,13 @@
+type Pet {
+  id: String!
+  name: String!
+  class: String!
+  stage: Int!
+  priceUSD: String!
+}
+
+type Pets {
+  total_count: Int!
+  result_count: Int!
+  pet: [Pet!]
+}
