@@ -14,6 +14,7 @@ input AxieInput {
 type Axie {
   classes: [Class!]
   pets(input: AxieInput): Pets
+  getPet(id: String!): Pet
 }
 
 type AxieMutation {

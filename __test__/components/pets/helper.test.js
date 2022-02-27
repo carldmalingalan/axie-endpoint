@@ -5,6 +5,7 @@ jest.mock("@components/pets/model", () => ({
   aggregate: jest.fn(),
   create: jest.fn(),
   findOneAndUpdate: jest.fn(),
+  findOne: jest.fn(),
 }));
 
 describe("getPets", () => {
@@ -191,6 +192,39 @@ describe("removePet", () => {
     );
 
     await expect(petHelper.removePet("001")).rejects.toThrow(
+      new Error("Pet cannot be found.")
+    );
+  });
+});
+
+describe("getPetInformation", () => {
+  const validResponse = {
+    id: "001",
+    name: "Test #1",
+    class: "Aquatic",
+    stage: 1,
+    priceUSD: "10",
+  };
+  it("should return a valid response", async () => {
+    PetModel.findOne.mockImplementation(() => ({
+      lean: () =>
+        Promise.resolve({
+          ...validResponse,
+          price: { USD: validResponse.priceUSD },
+        }),
+    }));
+
+    await expect(petHelper.getPetInformation("001")).resolves.toEqual(
+      validResponse
+    );
+  });
+
+  it("should return a valid response", async () => {
+    PetModel.findOne.mockImplementation(() => ({
+      lean: () => Promise.resolve(null),
+    }));
+
+    await expect(petHelper.getPetInformation("001")).rejects.toThrow(
       new Error("Pet cannot be found.")
     );
   });

@@ -108,3 +108,19 @@ export const removePet = async (id) => {
 
   return { id, name, class: petClass, stage, priceUSD: price.USD };
 };
+
+export const getPetInformation = async (id) => {
+  const unHashedId = decodeId(id);
+  const pet = await PetModel.findOne({
+    id: unHashedId,
+    deleted_at: null,
+  }).lean();
+
+  if (!pet) {
+    throw new Error("Pet cannot be found.");
+  }
+
+  const { name, class: petClass, stage, price } = pet;
+
+  return { id, name, class: petClass, stage, priceUSD: price.USD };
+};
