@@ -27,7 +27,7 @@ export const getPets = async (params) => {
   }
 
   const [petsObject] = petResult;
-  const [{ total_count }] = petTotalCount;
+  const [{ total_count: totalCount }] = petTotalCount;
 
   const petsWithHashedIds = petsObject.pet.map((pet) => ({
     ...pet,
@@ -36,15 +36,20 @@ export const getPets = async (params) => {
 
   const obfuscatedPets = { ...petsObject, pet: petsWithHashedIds };
 
-  return { ...obfuscatedPets, total_count };
+  return { ...obfuscatedPets, total_count: totalCount };
 };
 
 export const createNewPet = async (params) => {
-  const { priceUSD } = params;
+  const mutableParams = params;
+  const { priceUSD } = mutableParams;
 
-  delete params.priceUSD;
+  delete mutableParams.priceUSD;
 
-  const petDetals = { ...params, id: getUuid(), price: { USD: priceUSD } };
+  const petDetals = {
+    ...mutableParams,
+    id: getUuid(),
+    price: { USD: priceUSD },
+  };
   const newPet = await PetModel.create(petDetals);
 
   if (!newPet) {
@@ -58,13 +63,14 @@ export const createNewPet = async (params) => {
 };
 
 export const updatePetDetails = async (params) => {
-  const { id, priceUSD } = params;
+  const mutableParams = params;
+  const { id, priceUSD } = mutableParams;
   const rawId = decodeId(id);
 
-  delete params.id;
-  delete params.priceUSD;
+  delete mutableParams.id;
+  delete mutableParams.priceUSD;
 
-  let updateDetails = params;
+  let updateDetails = mutableParams;
 
   if (priceUSD) {
     updateDetails = { ...updateDetails, price: { USD: priceUSD } };
