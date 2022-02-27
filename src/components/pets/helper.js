@@ -67,7 +67,7 @@ export const updatePetDetails = async (params) => {
   );
 
   if (!updateResult) {
-    throw new Error("Pet cannot be found");
+    throw new Error("Pet cannot be found.");
   }
 
   const { name, class: petClass, stage, price } = updateResult;
@@ -85,7 +85,7 @@ export const removePet = async (id) => {
   );
 
   if (!deleteResult) {
-    throw new Error("Pet cannot be found");
+    throw new Error("Pet cannot be found.");
   }
 
   const { name, class: petClass, stage, price } = deleteResult;
