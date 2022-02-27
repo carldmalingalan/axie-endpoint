@@ -1,8 +1,7 @@
 const axios = require("axios").default;
 const { MongoClient } = require("mongodb");
 
-const MONGODB_URI =
-  "mongodb+srv://admin:qa1JAJDecW95fb8e@cluster0.zied7.mongodb.net/axie?retryWrites=true&w=majority";
+const MONGODB_URI = "";
 const THIRDPART_API = "https://graphql-gateway.axieinfinity.com/graphql";
 const DOCUMENT_TOTAL_COUNT = 300;
 const API_CALL_BATCH_COUNT = 50;
