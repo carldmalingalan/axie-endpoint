@@ -1,5 +1,4 @@
-export const MONGODB_URI = process.env.MONGODB_URI;
-export const HASH_SALT = process.env.HASH_SALT;
+export const { MONGODB_URI, HASH_SALT, PORT } = process.env;
 
 export const SORT_VALUES = {
   NAME: { name: 1 },
