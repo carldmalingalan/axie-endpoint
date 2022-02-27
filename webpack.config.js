@@ -2,6 +2,7 @@ const path = require("path");
 const dotenv = require("dotenv");
 const nodeExternals = require("webpack-node-externals");
 const { DefinePlugin } = require("webpack");
+const ESLintPlugin = require("eslint-webpack-plugin");
 
 module.exports = {
   mode: "development",
@@ -29,6 +30,7 @@ module.exports = {
   },
   plugins: [
     new DefinePlugin({ "process.env": JSON.stringify(dotenv.config().parsed) }),
+    new ESLintPlugin(),
   ],
   resolve: {
     alias: {
