@@ -22,6 +22,10 @@ export const getPets = async (params) => {
     PetModel.aggregate([...basePipeline, { $count: "total_count" }]),
   ]);
 
+  if (!petResult.length || !petTotalCount.length) {
+    throw new Error("Pet cannot be fetched.");
+  }
+
   const [petsObject] = petResult;
   const [{ total_count }] = petTotalCount;
 
@@ -42,6 +46,11 @@ export const createNewPet = async (params) => {
 
   const petDetals = { ...params, id: getUuid(), price: { USD: priceUSD } };
   const newPet = await PetModel.create(petDetals);
+
+  if (!newPet) {
+    throw new Error("Something went wrong cannot create new pet.");
+  }
+
   const { id, name, class: petClass, stage, price } = newPet;
   const hashedId = encodeId(id);
 
@@ -56,6 +65,7 @@ export const updatePetDetails = async (params) => {
   delete params.priceUSD;
 
   let updateDetails = params;
+
   if (priceUSD) {
     updateDetails = { ...updateDetails, price: { USD: priceUSD } };
   }

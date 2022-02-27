@@ -6,5 +6,9 @@ export const getClasses = async () => {
     { $project: { _id: 0, name: "$_id", total_pet_count: 1 } },
   ]);
 
+  if (!classResult) {
+    throw new Error("Class cannot be found.");
+  }
+
   return classResult;
 };
