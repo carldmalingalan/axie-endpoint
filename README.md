@@ -19,6 +19,13 @@ query Axie($limit: Int = 50, $offset: Int = 0, $sort: SortValue = NAME) {
       priceUSD
     }
   }
+  getPet(id: Int!){
+    id
+    name
+    class
+    stage
+    priceUSD
+  }
 }
 
 mutation AxieMutation {
@@ -34,6 +41,7 @@ mutation AxieMutation {
 
 | Name   | Description                  | Required | Default Value | Data Type |
 | ------ | ---------------------------- | -------- | ------------- | --------- |
+| id     | Pet ID field                 | No       | None          | String    |
 | limit  | Allowed returned limit       | No       | 50            | Int       |
 | offset | Offset index of the result   | No       | 0             | Int       |
 | sort   | Sorting option of the result | No       | NAME          | SortValue |
