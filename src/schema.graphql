@@ -12,7 +12,7 @@ input AxieInput {
 }
 
 type Axie {
-  classes(input: AxieInput): [Class!]
+  classes: [Class!]
   pets(input: AxieInput): Pets
 }
 

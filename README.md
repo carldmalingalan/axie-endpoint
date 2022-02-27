@@ -4,7 +4,7 @@
 
 ```graphql
 query Axie($limit: Int = 50, $offset: Int = 0, $sort: SortValue = NAME) {
-  classes(input: { limit: $limit, offset: $offset, sort: $sort }) {
+  classes {
     name
     total_pet_count
   }
